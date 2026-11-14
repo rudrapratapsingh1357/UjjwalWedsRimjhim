@@ -7,56 +7,25 @@ import { FloralDivider } from './FloralDecoration';
 export const FamilyPage = React.forwardRef<HTMLDivElement, { pageNumber: number }>(
   ({ pageNumber }, ref) => {
     const { isHindi, t } = useLanguage();
-    const { brothers, sisters, elderCouples } = weddingConfig.family;
+    const { elderCouples } = weddingConfig.family;
 
     return (
       <BookPage ref={ref} pageNumber={pageNumber}>
-        <div className="flex flex-col items-center justify-between text-center h-full py-1">
+        <div className="flex flex-col items-center justify-between text-center h-full py-2">
           {/* Header */}
-          <div>
-            <p className="font-sans text-[10px] uppercase tracking-luxury text-gold font-semibold mb-0.5">
-              {t('With Affection & Blessings', 'सस्नेह वंदना')}
+          <div className="pt-2">
+            <p className="font-sans text-[10px] uppercase tracking-luxury text-gold font-semibold mb-1">
+              {t('With Reverence & Blessings', 'सस्नेह वंदना')}
             </p>
             <h2 className="font-display text-2xl sm:text-3xl text-espresso font-normal tracking-wide">
-              {t('Our Family', 'हमारा परिवार')}
+              {t('Our Family', 'पूज्य स्वजन')}
             </h2>
-            <div className="w-12 h-px bg-gold/50 mx-auto mt-1 mb-2" />
-          </div>
-
-          {/* Siblings: Brothers & Sisters */}
-          <div className="w-full max-w-sm grid grid-cols-2 gap-3 my-1">
-            {/* Brothers */}
-            <div className="p-2 rounded-xl bg-beige/25 border border-gold/20">
-              <span className="font-sans text-[9px] uppercase tracking-wider text-gold-dark font-semibold">
-                {t('Brothers', 'भ्राता')}
-              </span>
-              <div className="mt-1 space-y-0.5 text-xs font-serif text-espresso">
-                {brothers.map((name, i) => (
-                  <p key={i} className="leading-snug">{name}</p>
-                ))}
-              </div>
-            </div>
-
-            {/* Sisters */}
-            <div className="p-2 rounded-xl bg-beige/25 border border-gold/20">
-              <span className="font-sans text-[9px] uppercase tracking-wider text-gold-dark font-semibold">
-                {t('Sisters', 'भगिनी')}
-              </span>
-              <div className="mt-1 space-y-0.5 text-xs font-serif text-espresso">
-                {sisters.map((name, i) => (
-                  <p key={i} className="leading-snug">{name}</p>
-                ))}
-              </div>
-            </div>
+            <div className="w-14 h-px bg-gold/50 mx-auto mt-1.5 mb-3" />
           </div>
 
           {/* Elders Section */}
-          <div className="w-full max-w-sm my-1 py-1.5 px-3 rounded-xl bg-white/70 border border-gold/30">
-            <span className="font-sans text-[9px] uppercase tracking-widest text-gold font-semibold mb-1 block">
-              {t('Family Elders', 'मार्गदर्शक एवं पूज्य स्वजन')}
-            </span>
-
-            <div className="space-y-1.5">
+          <div className="w-full max-w-sm my-auto py-3 px-4 rounded-2xl bg-white/80 border border-gold/35 shadow-card">
+            <div className="space-y-3.5">
               {elderCouples.map((couple, idx) => {
                 const wifeName = isHindi ? couple.wife.nameHi : couple.wife.name;
                 const hasWifeName = wifeName && wifeName.trim().length > 0;
@@ -64,33 +33,33 @@ export const FamilyPage = React.forwardRef<HTMLDivElement, { pageNumber: number 
                 return (
                   <div key={idx} className="flex flex-col items-center">
                     {/* Husband line */}
-                    <div className="w-full flex items-baseline justify-between px-2 text-xs">
-                      <span className="font-sans text-[10px] text-gold-dark font-medium">
+                    <div className="w-full flex items-baseline justify-between px-3 text-sm">
+                      <span className="font-sans text-[11px] text-gold-dark font-semibold uppercase tracking-wider">
                         {isHindi ? couple.husband.relationHi : couple.husband.relation}
                       </span>
-                      <span className="font-serif text-sm font-medium text-espresso">
+                      <span className="font-serif text-base sm:text-lg font-medium text-espresso">
                         {isHindi ? couple.husband.nameHi : couple.husband.name}
                       </span>
                     </div>
 
-                    {/* Wife line (Taiji name kept omitted if not provided) */}
-                    <div className="w-full flex items-baseline justify-between px-2 text-xs">
-                      <span className="font-sans text-[10px] text-gold-dark font-medium">
+                    {/* Wife line (Taiji name kept blank per groom's requirement) */}
+                    <div className="w-full flex items-baseline justify-between px-3 text-sm mt-0.5">
+                      <span className="font-sans text-[11px] text-gold-dark font-semibold uppercase tracking-wider">
                         {isHindi ? couple.wife.relationHi : couple.wife.relation}
                       </span>
                       {hasWifeName ? (
-                        <span className="font-serif text-sm font-medium text-espresso">
+                        <span className="font-serif text-base sm:text-lg font-medium text-espresso">
                           {wifeName}
                         </span>
                       ) : (
-                        <span className="font-serif text-xs italic text-espresso/40">
-                          {/* Left respectfully blank as requested */}
+                        <span className="font-serif text-sm italic text-espresso/40">
+                          {/* Blank per instruction */}
                         </span>
                       )}
                     </div>
 
                     {idx < elderCouples.length - 1 && (
-                      <div className="w-24 h-px bg-gold/25 my-1" />
+                      <div className="w-32 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent my-2" />
                     )}
                   </div>
                 );
@@ -98,7 +67,7 @@ export const FamilyPage = React.forwardRef<HTMLDivElement, { pageNumber: number 
             </div>
           </div>
 
-          <FloralDivider variant="minimal" className="my-0 scale-75" />
+          <FloralDivider variant="minimal" className="my-1 scale-75" />
         </div>
       </BookPage>
     );

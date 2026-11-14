@@ -96,7 +96,6 @@ export interface WeddingConfig {
     ganeshInvocation: string;
     mangalikKaryakram: string;
     dampatySutraBandhan: string;
-    mainInvitation: string;
     closingNote: string;
   };
   contacts: {
@@ -117,8 +116,8 @@ export const weddingConfig: WeddingConfig = {
     groom: {
       firstName: "Ujjwal",
       firstNameHi: "उज्जवल",
-      fullName: "Ujjwal Saini",
-      fullNameHi: "उज्जवल सैनी",
+      fullName: "Ujjwal",
+      fullNameHi: "उज्जवल",
       father: "Nardev Singh",
       fatherHi: "श्री नरदेव सिंह",
       mother: "Late Smt. Pramod Devi",
@@ -130,8 +129,8 @@ export const weddingConfig: WeddingConfig = {
     bride: {
       firstName: "Rimjhim",
       firstNameHi: "रिमझिम",
-      fullName: "Rimjhim Saini",
-      fullNameHi: "रिमझिम सैनी",
+      fullName: "Rimjhim",
+      fullNameHi: "रिमझिम",
       father: "Dharamveer Singh",
       fatherHi: "श्री धर्मवीर सिंह",
       mother: "Smt. Poonam Devi",
@@ -141,7 +140,7 @@ export const weddingConfig: WeddingConfig = {
       residenceHi: "काशीपुर (उत्तराखण्ड)",
     },
     monogram: "U & R",
-    title: "Ujjwal Weds Rimjhim",
+    title: "Ujjwal & Rimjhim",
     titleHi: "उज्जवल संग रिमझिम",
   },
   grandparents: {
@@ -156,13 +155,13 @@ export const weddingConfig: WeddingConfig = {
     dateDisplayHi: "4 दिसम्बर 2026",
     year: 2026,
     weddingDate: "2026-12-04",
-    timeDisplay: "Auspicious Hour",
+    timeDisplay: "As per Wedding Muhurat",
     timeDisplayHi: "शुभ लग्नानुसार",
     venue: {
       name: "Radhika Garden",
       nameHi: "राधिका गार्डन",
-      address: "Chakkar Road, Bijnor, Uttar Pradesh",
-      addressHi: "चक्कर रोड, बिजनौर",
+      address: "Chakkar Road, Bijnor, Uttar Pradesh, India",
+      addressHi: "चक्कर रोड, बिजनौर, उत्तर प्रदेश",
       mapUrl: "https://maps.app.goo.gl/w6iAMnuPyAtdFPa2A?g_st=aw",
     },
     schedule: [
@@ -175,8 +174,8 @@ export const weddingConfig: WeddingConfig = {
           {
             name: "Manda",
             nameHi: "मंडा",
-            time: "5:00 PM",
-            timeHi: "सायं 5:00 बजे",
+            time: "1:00 PM",
+            timeHi: "दोपहर 1:00 बजे",
             icon: "🪔",
           },
         ],
@@ -211,7 +210,7 @@ export const weddingConfig: WeddingConfig = {
           {
             name: "Vivah Sanskar",
             nameHi: "विवाह संस्कार",
-            time: "Auspicious Hour",
+            time: "As per Wedding Muhurat",
             timeHi: "शुभ लग्नानुसार",
             icon: "🔥",
           },
@@ -224,8 +223,8 @@ export const weddingConfig: WeddingConfig = {
         dateHi: "5 दिसम्बर 2026",
         events: [
           {
-            name: "Nav Vadhu Sang Aagman",
-            nameHi: "नव वधू संग आगमन",
+            name: "Griha Pravesh",
+            nameHi: "नववधू गृह प्रवेश",
             time: "Morning",
             timeHi: "प्रातः बेला में",
             icon: "🏠",
@@ -254,7 +253,7 @@ export const weddingConfig: WeddingConfig = {
     elderCouples: [
       {
         husband: { relation: "Tauji", relationHi: "ताऊजी", name: "Shokendar", nameHi: "शौकेन्द्र" },
-        wife: { relation: "Taiji", relationHi: "ताईजी", name: "", nameHi: "" }, // Taiji name kept blank per explicit instruction
+        wife: { relation: "Taiji", relationHi: "ताईजी", name: "", nameHi: "" }, // Kept blank per groom's requirement
       },
       {
         husband: { relation: "Chachaji", relationHi: "चाचाजी", name: "Arun", nameHi: "अरुण" },
@@ -271,13 +270,12 @@ export const weddingConfig: WeddingConfig = {
     ],
   },
   traditional: {
-    jayShriRam: "ॐ जय श्री राम ॐ",
     ganeshShloka: "वक्रतुण्ड महाकाय सूर्यकोटि समप्रभः |\nनिर्विघ्नं कुरुमेदेव सर्व कार्येषु सर्वदा ||",
     ganeshayNamah: "॥ श्री गणेशाय नमः ॥",
     ganeshInvocation: "विघ्न हरण मंगल करण श्री गणपति जी महाराज।\nप्रथम निमन्त्रण आपको पूरण कीजो काज।।",
-    mangalikKaryakram: "|| मांगलिक कार्यक्रम ||",
+    mangalikKaryakram: "Wedding Celebrations",
     dampatySutraBandhan: "दाम्पत्य-सूत्र-बंधन",
-    mainInvitation: "परम पिता परमेश्वर की असीम अनुकम्पा से\n\nवैदिक मंत्रोच्चार सहित पवित्र अग्नि देव के समक्ष सात फेरों के वैवाहिक बन्धन में बँधने जा रहे हैं। आप इस मंगल क्षण के साक्षी बन नव-युगल को अपना शुभाशीर्वाद प्रदान कर अनुगृहित करें।",
+    jayShriRam: "ॐ जय श्री राम ॐ",
     closingNote: "कृपया निमंत्रण पत्र को ही प्रत्यक्ष मिलन मानकर हृदय से स्वीकार करें।",
   },
   contacts: [

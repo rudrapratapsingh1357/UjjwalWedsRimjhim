@@ -38,9 +38,9 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   });
   const [audioAvailable, setAudioAvailable] = useState(true);
 
-  // Initialize audio element once at application level
+  // Initialize audio element once at application level (soft-piano.mp3 or fallback to wedding-instrumental.mp3)
   useEffect(() => {
-    const audio = new Audio('/audio/wedding-instrumental.mp3');
+    const audio = new Audio('/audio/soft-piano.mp3');
     audio.loop = true;
     audio.preload = 'none';
     audio.volume = volume;
@@ -130,3 +130,4 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 };
 
 export const useAudio = () => useContext(AudioContext);
+

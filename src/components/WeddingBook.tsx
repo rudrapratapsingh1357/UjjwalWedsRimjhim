@@ -5,6 +5,7 @@ import { useLanguage } from '../hooks/useLanguage';
 import { CoverPage } from './CoverPage';
 import { AnnouncementPage } from './AnnouncementPage';
 import { SchedulePage } from './SchedulePage';
+import { SiblingsPage } from './SiblingsPage';
 import { FamilyPage } from './FamilyPage';
 import { BlessingsPage } from './BlessingsPage';
 import { VenueClosingPage } from './VenueClosingPage';
@@ -19,7 +20,7 @@ export const WeddingBook: React.FC<WeddingBookProps> = () => {
   const flipBookRef = useRef<any>(null);
   const { isHindi, toggleLanguage, t } = useLanguage();
   const [currentPage, setCurrentPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(6);
+  const [totalPages, setTotalPages] = useState(7);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -73,7 +74,7 @@ export const WeddingBook: React.FC<WeddingBookProps> = () => {
 
   const handleShare = async () => {
     const shareData = {
-      title: 'Ujjwal Weds Rimjhim | Wedding Invitation',
+      title: 'Ujjwal & Rimjhim | Wedding Invitation',
       text: 'You are cordially invited to celebrate the wedding of Ujjwal and Rimjhim on 4 December 2026.',
       url: window.location.href,
     };
@@ -87,13 +88,15 @@ export const WeddingBook: React.FC<WeddingBookProps> = () => {
     }
   };
 
+  // 7-chapter quick jump pills
   const navChapters = [
     { page: 0, titleEn: 'Cover', titleHi: 'मुखपृष्ठ' },
     { page: 1, titleEn: 'Invite', titleHi: 'निमंत्रण' },
     { page: 2, titleEn: 'Events', titleHi: 'कार्यक्रम' },
-    { page: 3, titleEn: 'Family', titleHi: 'परिवार' },
-    { page: 4, titleEn: 'Blessings', titleHi: 'आशीर्वाद' },
-    { page: 5, titleEn: 'Venue', titleHi: 'स्थल' },
+    { page: 3, titleEn: 'Siblings', titleHi: 'भाई-बहन' },
+    { page: 4, titleEn: 'Family', titleHi: 'परिवार' },
+    { page: 5, titleEn: 'Blessings', titleHi: 'आशीर्वाद' },
+    { page: 6, titleEn: 'Venue', titleHi: 'स्थल' },
   ];
 
   return (
@@ -130,9 +133,9 @@ export const WeddingBook: React.FC<WeddingBookProps> = () => {
           ))}
         </div>
 
-        {/* Right actions: Background Music, Language toggle & Share */}
+        {/* Right actions: Soft Instrumental Piano Music, Language toggle & Share */}
         <div className="flex items-center gap-2">
-          {/* Background Instrumental Music Controller */}
+          {/* Background Piano Music Controller */}
           <BackgroundMusic />
 
           {/* Language Switcher */}
@@ -210,21 +213,24 @@ export const WeddingBook: React.FC<WeddingBookProps> = () => {
               onTurnPage={goToNextPage}
             />
 
-            {/* Page 2: Wedding Announcement & Sacred Invocations */}
+            {/* Page 2: Wedding Invitation / Parents / Grandparents */}
             <AnnouncementPage pageNumber={2} />
 
-            {/* Page 3: Auspicious 3-Day Schedule */}
+            {/* Page 3: Wedding Celebrations */}
             <SchedulePage pageNumber={3} />
 
-            {/* Page 4: Our Families (Brothers, Sisters, Elders) */}
-            <FamilyPage pageNumber={4} />
+            {/* Page 4: Brothers & Sisters */}
+            <SiblingsPage pageNumber={4} />
 
-            {/* Page 5: Blessings, Darshanabhilashi, Vinīt & Poems */}
-            <BlessingsPage pageNumber={5} />
+            {/* Page 5: Our Family (Elders) */}
+            <FamilyPage pageNumber={5} />
 
-            {/* Page 6: Venue, Directions, Contacts & Closing */}
+            {/* Page 6: Blessings & Family (Darshanabhilashi, Vinīt, Children) */}
+            <BlessingsPage pageNumber={6} />
+
+            {/* Page 7: Venue & Closing */}
             <VenueClosingPage
-              pageNumber={6}
+              pageNumber={7}
               onSaveCalendar={() => setIsModalOpen(true)}
             />
           </HTMLFlipBook>
@@ -245,7 +251,7 @@ export const WeddingBook: React.FC<WeddingBookProps> = () => {
           BOTTOM CONTROL BAR: Page indicator & Hint
           ════════════════════════════════════════════════════════ */}
       <footer className="relative z-30 flex flex-col items-center gap-1 mt-2 text-center">
-        {/* Page numbers indicator */}
+        {/* Page numbers indicator (Page X of 7) */}
         <div className="flex items-center gap-3 px-4 py-1.5 rounded-full bg-ivory/80 backdrop-blur-xs border border-gold/30 shadow-xs">
           <button
             onClick={goToPrevPage}

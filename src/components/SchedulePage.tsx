@@ -13,15 +13,12 @@ export const SchedulePage = React.forwardRef<HTMLDivElement, { pageNumber: numbe
     return (
       <BookPage ref={ref} pageNumber={pageNumber}>
         <div className="flex flex-col items-center justify-between text-center h-full py-1">
-          {/* Header */}
-          <div>
-            <p className="font-sans text-[10px] uppercase tracking-luxury text-gold font-semibold mb-0.5">
-              {weddingConfig.traditional.mangalikKaryakram}
-            </p>
+          {/* Header: Wedding Celebrations / मांगलिक कार्यक्रम */}
+          <div className="pt-1">
             <h2 className="font-display text-2xl sm:text-3xl text-espresso font-normal tracking-wide">
-              {t('Auspicious Schedule', 'मांगलिक कार्यक्रम')}
+              {t('Wedding Celebrations', 'मांगलिक कार्यक्रम')}
             </h2>
-            <div className="w-12 h-px bg-gold/50 mx-auto mt-1 mb-2" />
+            <div className="w-14 h-px bg-gold/50 mx-auto mt-1 mb-2" />
           </div>
 
           {/* Schedule list */}
@@ -49,7 +46,7 @@ export const SchedulePage = React.forwardRef<HTMLDivElement, { pageNumber: numbe
                   {dayPlan.events.map((evt, eIdx) => (
                     <div
                       key={eIdx}
-                      className="flex items-center justify-between py-1 px-1.5 rounded-lg bg-white/60 text-xs"
+                      className="flex items-center justify-between py-1 px-2 rounded-lg bg-white/70 text-xs"
                     >
                       <div className="flex items-center gap-1.5">
                         <span className="text-sm select-none">{evt.icon || '✨'}</span>
@@ -76,4 +73,3 @@ export const SchedulePage = React.forwardRef<HTMLDivElement, { pageNumber: numbe
 );
 
 SchedulePage.displayName = 'SchedulePage';
-

@@ -11,101 +11,70 @@ export const AnnouncementPage = React.forwardRef<HTMLDivElement, { pageNumber: n
 
     return (
       <BookPage ref={ref} pageNumber={pageNumber}>
-        <div className="flex flex-col items-center justify-between text-center h-full py-1">
-          {/* Top Invocations */}
-          <div className="space-y-1">
-            <p className="font-serif text-xs text-gold font-semibold tracking-widest">
-              {traditional.jayShriRam}
-            </p>
-            <div className="p-2 rounded-xl bg-beige/30 border border-gold/20 inline-block max-w-xs mx-auto">
-              <p className="text-[11px] sm:text-xs text-espresso/90 whitespace-pre-line leading-relaxed font-serif"
-                 style={{ fontFamily: "'Noto Serif Devanagari', 'Cormorant Garamond', serif" }}>
+        <div className="flex flex-col items-center justify-between text-center h-full py-2">
+          {/* Ganesh Shloka Box */}
+          <div className="w-full max-w-sm pt-2">
+            <div className="p-3 rounded-2xl bg-beige/35 border border-gold/30 inline-block w-full mx-auto shadow-xs">
+              <p
+                className="text-xs sm:text-sm text-espresso/90 whitespace-pre-line leading-relaxed font-serif"
+                style={{ fontFamily: "'Noto Serif Devanagari', 'Cormorant Garamond', serif" }}
+              >
                 {traditional.ganeshShloka}
               </p>
             </div>
           </div>
 
-          {/* Salutation */}
-          <div className="my-1">
-            <p className="font-serif italic text-sm text-gold-dark font-medium">
-              {t('Dear Family & Esteemed Friends,', 'परम स्नेही स्वजन,')}
-            </p>
-            <p className="font-serif text-xs text-espresso/80">
-              {t('By the boundless grace of the Almighty Lord', '”परम पिता परमेश्वर की असीम अनुकम्पा से”')}
-            </p>
-          </div>
+          <FloralDivider variant="minimal" className="my-1 scale-80" />
 
           {/* Grandparents Blessing */}
-          <div className="my-1 py-1 px-3 rounded-lg bg-gold/10 border border-gold/20 max-w-xs">
-            <p className="font-serif text-xs sm:text-sm text-espresso font-medium">
+          <div className="w-full max-w-sm my-1 py-2 px-4 rounded-xl bg-gold/10 border border-gold/25">
+            <p className="font-serif text-sm sm:text-base text-espresso font-medium">
               {isHindi ? grandparents.grandfatherHi : grandparents.grandfather}
-              <span className="font-serif text-gold-dark mx-1">&amp;</span>
+              <span className="font-serif text-gold-dark mx-1.5">&amp;</span>
               {isHindi ? grandparents.grandmotherHi : grandparents.grandmother}
             </p>
-            <p className="font-sans text-[9px] uppercase tracking-widest text-gold-dark font-semibold">
+            <p className="font-sans text-[10px] uppercase tracking-widest text-gold-dark font-semibold mt-0.5">
               {t('Bless their beloved grandson', 'अपने प्रिय सुपौत्र')}
             </p>
           </div>
 
-          {/* Couple Announcement Centerpiece */}
-          <div className="w-full max-w-sm my-1 py-2 px-3 rounded-xl bg-white/70 border border-gold/30 shadow-subtle">
-            {/* Groom */}
-            <h3 className="font-display text-xl sm:text-2xl text-espresso font-medium">
-              {isHindi ? couple.groom.fullNameHi : couple.groom.fullName}
-            </h3>
-            <p className="font-serif text-[11px] text-espresso/80">
-              {t('Son of: ', 'सुपुत्र: ')}
-              {isHindi ? couple.groom.motherHi : couple.groom.mother} & {isHindi ? couple.groom.fatherHi : couple.groom.father}
+          {/* Couple Announcement Centerpiece (NO SURNAMES for bride & groom) */}
+          <div className="w-full max-w-sm my-2 py-4 px-4 rounded-2xl bg-white/75 border border-gold/35 shadow-card">
+            {/* Groom: Ujjwal */}
+            <h2 className="font-display text-2xl sm:text-3xl text-espresso font-normal tracking-wide">
+              {isHindi ? couple.groom.firstNameHi : couple.groom.firstName}
+            </h2>
+            <p className="font-serif text-xs sm:text-sm text-espresso/85 mt-1">
+              <span className="text-gold-dark font-medium">{t('Son of: ', 'सुपुत्र: ')}</span>
+              {isHindi ? couple.groom.motherHi : couple.groom.mother} &amp; {isHindi ? couple.groom.fatherHi : couple.groom.father}
             </p>
-            <p className="font-sans text-[9px] text-espresso/60 tracking-wider">
+            <p className="font-sans text-[10px] text-espresso/60 tracking-wider mt-0.5">
               {isHindi ? couple.groom.residenceHi : couple.groom.residence}
             </p>
 
             {/* Weds Divider */}
-            <div className="flex items-center justify-center gap-2 my-1">
-              <div className="h-px w-8 bg-gold/40" />
-              <span className="font-script text-xl text-gold font-normal">
+            <div className="flex items-center justify-center gap-3 my-2.5">
+              <div className="h-px w-10 bg-gradient-to-r from-transparent to-gold/50" />
+              <span className="font-script text-2xl text-gold font-normal">
                 {isHindi ? 'संग' : 'Weds'}
               </span>
-              <div className="h-px w-8 bg-gold/40" />
+              <div className="h-px w-10 bg-gradient-to-l from-transparent to-gold/50" />
             </div>
 
-            {/* Bride */}
-            <h3 className="font-display text-xl sm:text-2xl text-espresso font-medium">
-              {isHindi ? couple.bride.fullNameHi : couple.bride.fullName}
-            </h3>
-            <p className="font-serif text-[11px] text-espresso/80">
-              {t('Daughter of: ', 'सुपुत्री: ')}
-              {isHindi ? couple.bride.motherHi : couple.bride.mother} & {isHindi ? couple.bride.fatherHi : couple.bride.father}
+            {/* Bride: Rimjhim */}
+            <h2 className="font-display text-2xl sm:text-3xl text-espresso font-normal tracking-wide">
+              {isHindi ? couple.bride.firstNameHi : couple.bride.firstName}
+            </h2>
+            <p className="font-serif text-xs sm:text-sm text-espresso/85 mt-1">
+              <span className="text-gold-dark font-medium">{t('Daughter of: ', 'सुपुत्री: ')}</span>
+              {isHindi ? couple.bride.motherHi : couple.bride.mother} &amp; {isHindi ? couple.bride.fatherHi : couple.bride.father}
             </p>
-            <p className="font-sans text-[9px] text-espresso/60 tracking-wider">
+            <p className="font-sans text-[10px] text-espresso/60 tracking-wider mt-0.5">
               {isHindi ? couple.bride.residenceHi : couple.bride.residence}
             </p>
           </div>
 
-          {/* Dampatya Sutra Bandhan Badge */}
-          <div className="inline-block px-4 py-1 rounded-full bg-gold/15 border border-gold/40 my-1">
-            <span className="font-serif text-xs font-semibold text-gold-dark tracking-wider">
-              {t('Sacred Matrimonial Alliance', traditional.dampatySutraBandhan)}
-            </span>
-          </div>
-
-          {/* Sacred Vows Text */}
-          <div className="max-w-xs text-center text-espresso/85 font-serif text-[11px] sm:text-xs leading-relaxed my-1">
-            {isHindi ? (
-              <p style={{ fontFamily: "'Noto Serif Devanagari', serif" }}>
-                वैदिक मंत्रोच्चार सहित पवित्र अग्नि देव के समक्ष सात फेरों के वैवाहिक बन्धन में बँधने जा रहे हैं।
-                आप इस मंगल क्षण के साक्षी बन नव-युगल को अपना शुभाशीर्वाद प्रदान कर अनुगृहित करें।
-              </p>
-            ) : (
-              <p>
-                Are taking the sacred seven vows with Vedic chants before the holy Agni Dev.
-                We cordially invite you to witness this auspicious occasion and bless the couple.
-              </p>
-            )}
-          </div>
-
-          <FloralDivider variant="minimal" className="my-0 scale-75" />
+          <FloralDivider variant="minimal" className="my-1 scale-80" />
         </div>
       </BookPage>
     );
@@ -113,4 +82,3 @@ export const AnnouncementPage = React.forwardRef<HTMLDivElement, { pageNumber: n
 );
 
 AnnouncementPage.displayName = 'AnnouncementPage';
-

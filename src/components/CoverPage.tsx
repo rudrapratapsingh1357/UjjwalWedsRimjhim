@@ -33,7 +33,7 @@ export const CoverPage = React.forwardRef<HTMLDivElement, CoverPageProps>(
         <div className="absolute inset-3.5 sm:inset-4.5 border border-gold/20 rounded-lg pointer-events-none z-30" />
 
         {/* ════════════════════════════════════════════════════════
-            1. TOP HEADER AREA: ॥ श्री गणेशाय नमः ॥
+            1. TOP: ॥ श्री गणेशाय नमः ॥
             - Placed completely above the photo in its own section
             - Zero overlap with the couple or photograph
             ════════════════════════════════════════════════════════ */}
@@ -48,16 +48,16 @@ export const CoverPage = React.forwardRef<HTMLDivElement, CoverPageProps>(
 
         {/* ════════════════════════════════════════════════════════
             2. MIDDLE: ORIGINAL COUPLE PHOTOGRAPH
-            - 100% opacity, crisp natural colors, zero white veil
-            - object-position: center top (center 0%) preserves full
-              heads, faces and expressions with zero cropping
+            - 100% full opacity, crisp natural original colors
+            - object-position: center 0% ensures full heads & faces
+              remain 100% visible with zero cropping
             - Bottom fade starts at ~68%–72% height, blending smoothly
               into the ivory background without touching the faces
             ════════════════════════════════════════════════════════ */}
-        <div className="relative w-full h-[52%] sm:h-[55%] overflow-hidden z-10 px-3 sm:px-4">
+        <div className="relative w-full h-[54%] sm:h-[57%] overflow-hidden z-10 px-3 sm:px-4">
           <img
             src="/couple-hero.jpg"
-            alt="Ujjwal and Rimjhim"
+            alt="Ujjwal & Rimjhim"
             className="w-full h-full object-cover rounded-t-lg"
             style={{
               objectPosition: 'center 0%',
@@ -70,24 +70,18 @@ export const CoverPage = React.forwardRef<HTMLDivElement, CoverPageProps>(
         </div>
 
         {/* ════════════════════════════════════════════════════════
-            3. BELOW PHOTOGRAPH: TYPOGRAPHY HIERARCHY
+            3. BELOW PHOTOGRAPH: REFINED TYPOGRAPHY HIERARCHY
             - U&R monogram
-            - Together with our families
-            - Ujjwal & Rimjhim
+            - Ujjwal & Rimjhim (no surnames)
             - 4 December 2026
             - Save the Date button
             - Turn Page interaction
             ════════════════════════════════════════════════════════ */}
         <div className="relative z-20 flex-1 flex flex-col justify-between items-center text-center px-4 sm:px-6 pb-4 sm:pb-5 pt-1">
-          {/* Monogram */}
-          <MonogramLogo size="sm" theme="gold" className="scale-80 -mt-2 mb-0.5" />
+          {/* U&R Monogram */}
+          <MonogramLogo size="sm" theme="gold" className="scale-85 -mt-2 mb-0.5" />
 
-          {/* Together with our families */}
-          <p className="font-serif italic text-xs sm:text-sm text-espresso/80 tracking-wide">
-            {t('Together with our families', 'परिवार एवं गुरुजनों के सान्निध्य में')}
-          </p>
-
-          {/* Couple Names */}
+          {/* Couple Names (Without Surnames) */}
           <div className="my-0.5">
             <h1 className="font-display text-2xl sm:text-3xl md:text-4xl text-espresso font-normal tracking-wide leading-tight">
               {isHindi ? weddingConfig.couple.groom.firstNameHi : weddingConfig.couple.groom.firstName}
@@ -98,7 +92,7 @@ export const CoverPage = React.forwardRef<HTMLDivElement, CoverPageProps>(
             </h1>
           </div>
 
-          {/* Thin divider */}
+          {/* Thin gold divider */}
           <div className="w-12 h-px bg-gold/50 my-0.5" />
 
           {/* Date */}
