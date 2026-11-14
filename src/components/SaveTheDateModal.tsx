@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { X, MapPin, Calendar, Check, ExternalLink, Clock } from 'lucide-react';
+import { X, MapPin, Calendar, Check, ExternalLink, Clock, Share2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { weddingConfig } from '../config/weddingConfig';
+import { useLanguage } from '../hooks/useLanguage';
 import { MonogramLogo } from './MonogramLogo';
 
 interface SaveTheDateModalProps {
@@ -15,8 +16,9 @@ export const SaveTheDateModal: React.FC<SaveTheDateModalProps> = ({
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [calendarSaved, setCalendarSaved] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(false);
+  const { t } = useLanguage();
 
-  // Keyboard accessibility (ESC to close) and focus trapping
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
@@ -27,7 +29,6 @@ export const SaveTheDateModal: React.FC<SaveTheDateModalProps> = ({
     if (isOpen) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
-      // Confetti burst on open (luxurious champagne & gold)
       confetti({
         particleCount: 40,
         spread: 60,
@@ -38,6 +39,7 @@ export const SaveTheDateModal: React.FC<SaveTheDateModalProps> = ({
     } else {
       document.body.style.overflow = '';
       setCalendarSaved(false);
+      setCopiedLink(false);
     }
 
     return () => {
@@ -49,21 +51,50 @@ export const SaveTheDateModal: React.FC<SaveTheDateModalProps> = ({
   if (!isOpen) return null;
 
   const handleAddCalendar = () => {
-    // If year is set, create .ics with 7:00 PM (19:00 local time)
-    if (weddingConfig.event.year) {
-      const icsData = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:Wedding: ${weddingConfig.couple.title}\nDESCRIPTION:Celebrating the wedding of ${weddingConfig.couple.groom.firstName} & ${weddingConfig.couple.bride.firstName} at ${weddingConfig.event.timeDisplay}\nLOCATION:${weddingConfig.event.venue.title}\nDTSTART:${weddingConfig.event.year}1204T133000Z\nDTEND:${weddingConfig.event.year}1204T183000Z\nEND:VEVENT\nEND:VCALENDAR`;
-      const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', 'Ujjwal-Rimjhim-Wedding.ics');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      setCalendarSaved(true);
+    // 4 Dec 2026 19:00 IST = 13:30 UTC
+    const icsData = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Ujjwal Weds Rimjhim//Wedding Invitation//EN',
+      'BEGIN:VEVENT',
+      `SUMMARY:Wedding: ${weddingConfig.couple.title}`,
+      `DESCRIPTION:Celebrating the wedding ceremony of ${weddingConfig.couple.groom.fullName} & ${weddingConfig.couple.bride.fullName}. Venue: ${weddingConfig.event.venue.name}, ${weddingConfig.event.venue.address}`,
+      `LOCATION:${weddingConfig.event.venue.name}, ${weddingConfig.event.venue.address}`,
+      'DTSTART:20261204T133000Z',
+      'DTEND:20261204T183000Z',
+      'STATUS:CONFIRMED',
+      'END:VEVENT',
+      'END:VCALENDAR',
+    ].join('\r\n');
+
+    const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'Ujjwal-Rimjhim-Wedding.ics');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setCalendarSaved(true);
+  };
+
+  const handleShare = async () => {
+    const shareData = {
+      title: 'Ujjwal Weds Rimjhim | Wedding Invitation',
+      text: 'You are cordially invited to celebrate the wedding of Ujjwal and Rimjhim on 4 December 2026.',
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        // user cancelled or share failed
+      }
     } else {
-      // Confirmed time is 7:00 PM onwards, year to be finalized
-      setCalendarSaved(true);
+      navigator.clipboard.writeText(window.location.href);
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 2500);
     }
   };
 
@@ -78,10 +109,9 @@ export const SaveTheDateModal: React.FC<SaveTheDateModalProps> = ({
       <div
         ref={modalRef}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-lg bg-ivory border border-gold/40 rounded-2xl shadow-2xl overflow-hidden p-6 sm:p-10 text-center transform transition-all duration-500 animate-scaleUp"
+        className="relative w-full max-w-lg bg-ivory border border-gold/40 rounded-3xl shadow-2xl overflow-hidden p-6 sm:p-10 text-center transform transition-all duration-500 animate-scaleUp"
       >
-        {/* Subtle decorative inner border */}
-        <div className="absolute inset-2 border border-gold/20 rounded-xl pointer-events-none" />
+        <div className="absolute inset-2 border border-gold/20 rounded-2xl pointer-events-none" />
 
         {/* Close Button */}
         <button
@@ -98,27 +128,30 @@ export const SaveTheDateModal: React.FC<SaveTheDateModalProps> = ({
         </div>
 
         {/* Modal Heading */}
-        <p className="text-xs uppercase tracking-luxury text-gold font-sans font-medium mb-1">
-          Save The Date
+        <p className="text-xs uppercase tracking-luxury text-gold font-sans font-semibold mb-1">
+          {t('Save The Date', 'तारीख सुरक्षित करें')}
         </p>
         <h3
           id="modal-title"
-          className="font-serif text-3xl sm:text-4xl text-espresso font-normal tracking-wide mb-1"
+          className="font-display text-3xl sm:text-4xl text-espresso font-normal tracking-wide mb-1"
         >
-          {weddingConfig.event.dateDisplay}
+          {t(weddingConfig.event.dateDisplay, weddingConfig.event.dateDisplayHi)}
         </h3>
 
         {/* Time display */}
         <div className="inline-flex items-center gap-1.5 text-xs font-sans tracking-widest uppercase text-gold-dark font-medium my-1">
           <Clock className="w-3.5 h-3.5 text-gold" />
-          <span>{weddingConfig.event.timeDisplay}</span>
+          <span>{t(weddingConfig.event.timeDisplay, weddingConfig.event.timeDisplayHi)}</span>
         </div>
 
         <div className="h-[1px] w-16 bg-gold/40 mx-auto my-4" />
 
         {/* Short message */}
-        <p className="font-serif italic text-base sm:text-lg text-espresso-muted mb-6 leading-relaxed max-w-sm mx-auto">
-          "We would love to celebrate this special day with you."
+        <p className="font-serif italic text-base sm:text-lg text-espresso/80 mb-6 leading-relaxed max-w-sm mx-auto">
+          {t(
+            '“We would love to celebrate this sacred day with you.”',
+            '”आपकी गरिमामयी उपस्थिति हमारे इस पावन उत्सव को अलंकृत करेगी।”'
+          )}
         </p>
 
         {/* Actions */}
@@ -128,43 +161,45 @@ export const SaveTheDateModal: React.FC<SaveTheDateModalProps> = ({
             href={weddingConfig.event.venue.mapUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center justify-center gap-2.5 w-full py-3.5 px-6 rounded-xl bg-gold text-white font-sans text-sm font-medium tracking-wide shadow-md hover:bg-gold-dark transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2"
+            className="group flex items-center justify-center gap-2.5 w-full py-3.5 px-6 rounded-xl bg-gold text-white font-sans text-xs uppercase tracking-widest font-semibold shadow-md hover:bg-gold-dark transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2"
           >
             <MapPin className="w-4 h-4 transition-transform group-hover:scale-110" />
-            <span>View Venue on Google Maps</span>
+            <span>{t('View Venue on Google Maps', 'गूगल मैप्स पर स्थल देखें')}</span>
             <ExternalLink className="w-3.5 h-3.5 opacity-80" />
           </a>
 
           {/* Add to Calendar Button */}
           <button
             onClick={handleAddCalendar}
-            className={`flex items-center justify-center gap-2 w-full py-3 px-6 rounded-xl border border-gold/40 bg-white/50 text-espresso font-sans text-sm font-medium tracking-wide transition-all duration-300 hover:bg-gold/10 hover:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 ${
-              calendarSaved ? 'text-sage-light' : ''
+            className={`flex items-center justify-center gap-2 w-full py-3 px-6 rounded-xl border border-gold/40 bg-white/60 text-espresso font-sans text-xs uppercase tracking-widest font-semibold transition-all duration-300 hover:bg-gold/10 hover:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 ${
+              calendarSaved ? 'text-sage' : ''
             }`}
           >
             {calendarSaved ? (
               <>
                 <Check className="w-4 h-4 text-sage" />
-                <span>
-                  {weddingConfig.event.year
-                    ? 'Calendar Invite Downloaded!'
-                    : 'Saved to Calendar! (4 Dec at 7:00 PM)'}
-                </span>
+                <span>{t('Downloaded! (4 Dec 2026)', 'कैलेंडर में सुरक्षित किया गया!')}</span>
               </>
             ) : (
               <>
                 <Calendar className="w-4 h-4 text-gold" />
-                <span>
-                  Add to Calendar (4 Dec • 7:00 PM)
-                </span>
+                <span>{t('Add to Calendar (.ics)', 'कैलेंडर में जोड़ें (.ics)')}</span>
               </>
             )}
           </button>
+
+          {/* Share Invitation */}
+          <button
+            onClick={handleShare}
+            className="flex items-center justify-center gap-2 w-full py-3 px-6 rounded-xl border border-gold/30 bg-ivory text-espresso font-sans text-xs uppercase tracking-widest font-medium transition-all hover:bg-gold/10"
+          >
+            <Share2 className="w-4 h-4 text-gold" />
+            <span>{copiedLink ? t('Link Copied to Clipboard!', 'लिंक कॉपी हो गया!') : t('Share Invitation', 'निमंत्रण साझा करें')}</span>
+          </button>
         </div>
 
-        {/* Venue Note */}
-        <p className="text-[11px] text-espresso-light/70 font-sans tracking-wider mt-6">
-          Press ESC or click anywhere outside to close
+        <p className="text-[11px] text-espresso/60 font-sans tracking-wider mt-6">
+          {t('Press ESC or tap outside to close', 'बंद करने हेतु कहीं भी बाहर टैप करें')}
         </p>
       </div>
     </div>

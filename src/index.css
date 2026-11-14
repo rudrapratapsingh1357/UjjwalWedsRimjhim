@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Inter:wght@300;400;500;600&family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -25,7 +25,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-family: 'Cormorant Garamond', 'Noto Serif Devanagari', 'Playfair Display', Georgia, serif;
   background-color: #F8F4EB;
   overflow-x: hidden;
 }
@@ -53,6 +53,21 @@ body {
   }
 }
 
+@keyframes pulseGently {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+.envelope-pulse {
+  animation: pulseGently 2.2s infinite ease-in-out;
+}
+
 .animate-fadeIn {
   animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -72,4 +87,3 @@ body {
     scroll-behavior: auto !important;
   }
 }
-
