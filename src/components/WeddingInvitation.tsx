@@ -107,3 +107,4 @@ export const WeddingInvitation: React.FC = () => {
     </section>
   );
 };
+
