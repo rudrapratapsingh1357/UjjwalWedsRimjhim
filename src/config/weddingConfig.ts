@@ -156,8 +156,8 @@ export const weddingConfig: WeddingConfig = {
     dateDisplayHi: "4 दिसम्बर 2026",
     year: 2026,
     weddingDate: "2026-12-04",
-    timeDisplay: "7:00 PM onwards",
-    timeDisplayHi: "सायं 7:00 बजे",
+    timeDisplay: "Auspicious Hour",
+    timeDisplayHi: "शुभ लग्नानुसार",
     venue: {
       name: "Radhika Garden",
       nameHi: "राधिका गार्डन",
@@ -254,7 +254,7 @@ export const weddingConfig: WeddingConfig = {
     elderCouples: [
       {
         husband: { relation: "Tauji", relationHi: "ताऊजी", name: "Shokendar", nameHi: "शौकेन्द्र" },
-        wife: { relation: "Taiji", relationHi: "ताईजी", name: "Laxmi", nameHi: "लक्ष्मी" },
+        wife: { relation: "Taiji", relationHi: "ताईजी", name: "", nameHi: "" }, // Taiji name kept blank per explicit instruction
       },
       {
         husband: { relation: "Chachaji", relationHi: "चाचाजी", name: "Arun", nameHi: "अरुण" },
@@ -273,7 +273,7 @@ export const weddingConfig: WeddingConfig = {
   traditional: {
     jayShriRam: "ॐ जय श्री राम ॐ",
     ganeshShloka: "वक्रतुण्ड महाकाय सूर्यकोटि समप्रभः |\nनिर्विघ्नं कुरुमेदेव सर्व कार्येषु सर्वदा ||",
-    ganeshayNamah: "|| श्री गणेशाय नमः ||",
+    ganeshayNamah: "॥ श्री गणेशाय नमः ॥",
     ganeshInvocation: "विघ्न हरण मंगल करण श्री गणपति जी महाराज।\nप्रथम निमन्त्रण आपको पूरण कीजो काज।।",
     mangalikKaryakram: "|| मांगलिक कार्यक्रम ||",
     dampatySutraBandhan: "दाम्पत्य-सूत्र-बंधन",

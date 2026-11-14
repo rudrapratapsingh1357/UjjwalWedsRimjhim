@@ -113,3 +113,4 @@ export const AnnouncementPage = React.forwardRef<HTMLDivElement, { pageNumber: n
 );
 
 AnnouncementPage.displayName = 'AnnouncementPage';
+

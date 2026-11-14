@@ -57,30 +57,44 @@ export const FamilyPage = React.forwardRef<HTMLDivElement, { pageNumber: number 
             </span>
 
             <div className="space-y-1.5">
-              {elderCouples.map((couple, idx) => (
-                <div key={idx} className="flex flex-col items-center">
-                  <div className="w-full flex items-baseline justify-between px-2 text-xs">
-                    <span className="font-sans text-[10px] text-gold-dark font-medium">
-                      {isHindi ? couple.husband.relationHi : couple.husband.relation}
-                    </span>
-                    <span className="font-serif text-sm font-medium text-espresso">
-                      {isHindi ? couple.husband.nameHi : couple.husband.name}
-                    </span>
-                  </div>
-                  <div className="w-full flex items-baseline justify-between px-2 text-xs">
-                    <span className="font-sans text-[10px] text-gold-dark font-medium">
-                      {isHindi ? couple.wife.relationHi : couple.wife.relation}
-                    </span>
-                    <span className="font-serif text-sm font-medium text-espresso">
-                      {isHindi ? couple.wife.nameHi : couple.wife.name}
-                    </span>
-                  </div>
+              {elderCouples.map((couple, idx) => {
+                const wifeName = isHindi ? couple.wife.nameHi : couple.wife.name;
+                const hasWifeName = wifeName && wifeName.trim().length > 0;
 
-                  {idx < elderCouples.length - 1 && (
-                    <div className="w-24 h-px bg-gold/25 my-1" />
-                  )}
-                </div>
-              ))}
+                return (
+                  <div key={idx} className="flex flex-col items-center">
+                    {/* Husband line */}
+                    <div className="w-full flex items-baseline justify-between px-2 text-xs">
+                      <span className="font-sans text-[10px] text-gold-dark font-medium">
+                        {isHindi ? couple.husband.relationHi : couple.husband.relation}
+                      </span>
+                      <span className="font-serif text-sm font-medium text-espresso">
+                        {isHindi ? couple.husband.nameHi : couple.husband.name}
+                      </span>
+                    </div>
+
+                    {/* Wife line (Taiji name kept omitted if not provided) */}
+                    <div className="w-full flex items-baseline justify-between px-2 text-xs">
+                      <span className="font-sans text-[10px] text-gold-dark font-medium">
+                        {isHindi ? couple.wife.relationHi : couple.wife.relation}
+                      </span>
+                      {hasWifeName ? (
+                        <span className="font-serif text-sm font-medium text-espresso">
+                          {wifeName}
+                        </span>
+                      ) : (
+                        <span className="font-serif text-xs italic text-espresso/40">
+                          {/* Left respectfully blank as requested */}
+                        </span>
+                      )}
+                    </div>
+
+                    {idx < elderCouples.length - 1 && (
+                      <div className="w-24 h-px bg-gold/25 my-1" />
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
 

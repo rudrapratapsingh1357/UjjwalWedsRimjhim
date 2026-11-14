@@ -76,3 +76,4 @@ export const SchedulePage = React.forwardRef<HTMLDivElement, { pageNumber: numbe
 );
 
 SchedulePage.displayName = 'SchedulePage';
+

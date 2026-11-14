@@ -7,15 +7,23 @@ import { FloralDivider } from './FloralDecoration';
 
 interface VenueClosingPageProps {
   pageNumber: number;
-  onOpenRsvp: () => void;
   onSaveCalendar: () => void;
 }
 
 export const VenueClosingPage = React.forwardRef<HTMLDivElement, VenueClosingPageProps>(
-  ({ pageNumber, onOpenRsvp, onSaveCalendar }, ref) => {
+  ({ pageNumber, onSaveCalendar }, ref) => {
     const { isHindi, t } = useLanguage();
     const { venue } = weddingConfig.event;
     const { contacts, traditional } = weddingConfig;
+
+    const handleSendWishes = () => {
+      const primaryPhone = contacts[0].phone;
+      const text = encodeURIComponent(
+        `*Ujjwal Weds Rimjhim — Best Wishes & Blessings*\n\n` +
+        `Warmest congratulations and best wishes to Ujjwal & Rimjhim for a lifetime of love, joy, and togetherness! ✨💐`
+      );
+      window.open(`https://wa.me/91${primaryPhone}?text=${text}`, '_blank');
+    };
 
     return (
       <BookPage ref={ref} pageNumber={pageNumber} isCover={true}>
@@ -102,13 +110,14 @@ export const VenueClosingPage = React.forwardRef<HTMLDivElement, VenueClosingPag
             </div>
           </div>
 
-          {/* RSVP Button */}
+          {/* Send Blessings via WhatsApp */}
           <div className="my-1">
             <button
-              onClick={onOpenRsvp}
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gold/20 border border-gold text-gold-dark hover:bg-gold hover:text-white font-sans text-xs font-semibold tracking-wider uppercase transition-all shadow-xs"
+              onClick={handleSendWishes}
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gold/15 border border-gold text-gold-dark hover:bg-gold hover:text-white font-sans text-xs font-semibold tracking-wider uppercase transition-all shadow-xs"
             >
-              <span>{t('Send RSVP / Wishes', 'स्वीकृति / शुभकामना भेजें')}</span>
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>{t('Send Blessings via WhatsApp', 'व्हाट्सएप पर शुभकामना भेजें')}</span>
             </button>
           </div>
 

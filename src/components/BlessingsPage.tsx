@@ -80,3 +80,4 @@ export const BlessingsPage = React.forwardRef<HTMLDivElement, { pageNumber: numb
 );
 
 BlessingsPage.displayName = 'BlessingsPage';
+

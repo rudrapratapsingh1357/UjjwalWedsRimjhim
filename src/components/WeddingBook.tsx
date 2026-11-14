@@ -9,6 +9,7 @@ import { FamilyPage } from './FamilyPage';
 import { BlessingsPage } from './BlessingsPage';
 import { VenueClosingPage } from './VenueClosingPage';
 import { SaveTheDateModal } from './SaveTheDateModal';
+import { BackgroundMusic } from './BackgroundMusic';
 
 interface WeddingBookProps {
   onReopenEnvelope?: () => void;
@@ -101,7 +102,7 @@ export const WeddingBook: React.FC<WeddingBookProps> = () => {
       <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(#B69558_0.6px,transparent_0.6px)] [background-size:20px_20px] opacity-15" />
 
       {/* ════════════════════════════════════════════════════════
-          TOP CONTROL BAR: Language Switcher, Chapter Pills & Share
+          TOP CONTROL BAR: Title, Chapters, Music Toggle, Language & Share
           ════════════════════════════════════════════════════════ */}
       <header className="relative z-30 w-full max-w-4xl flex items-center justify-between px-2 sm:px-4 py-1.5 sm:py-2 bg-ivory/90 backdrop-blur-md rounded-2xl border border-gold/30 shadow-subtle mb-2">
         {/* Book Title */}
@@ -113,7 +114,7 @@ export const WeddingBook: React.FC<WeddingBookProps> = () => {
         </div>
 
         {/* Chapter quick jump pills (hidden on very small screens, visible on tablet+) */}
-        <div className="hidden sm:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-1">
           {navChapters.map((ch) => (
             <button
               key={ch.page}
@@ -129,8 +130,12 @@ export const WeddingBook: React.FC<WeddingBookProps> = () => {
           ))}
         </div>
 
-        {/* Right actions: Language toggle & Share */}
+        {/* Right actions: Background Music, Language toggle & Share */}
         <div className="flex items-center gap-2">
+          {/* Background Instrumental Music Controller */}
+          <BackgroundMusic />
+
+          {/* Language Switcher */}
           <button
             onClick={toggleLanguage}
             className="flex items-center gap-1 px-3 py-1 rounded-full border border-gold/40 bg-white/70 text-espresso text-xs font-sans font-semibold tracking-wide hover:bg-gold/15 transition-colors"
@@ -141,6 +146,7 @@ export const WeddingBook: React.FC<WeddingBookProps> = () => {
             <span>{isHindi ? 'English' : 'हिंदी'}</span>
           </button>
 
+          {/* Share Button */}
           <button
             onClick={handleShare}
             className="p-1.5 rounded-full border border-gold/30 bg-white/60 text-espresso hover:text-gold hover:bg-gold/10 transition-colors"
@@ -216,10 +222,9 @@ export const WeddingBook: React.FC<WeddingBookProps> = () => {
             {/* Page 5: Blessings, Darshanabhilashi, Vinīt & Poems */}
             <BlessingsPage pageNumber={5} />
 
-            {/* Page 6: Venue, Directions, Contacts & RSVP */}
+            {/* Page 6: Venue, Directions, Contacts & Closing */}
             <VenueClosingPage
               pageNumber={6}
-              onOpenRsvp={() => setIsModalOpen(true)}
               onSaveCalendar={() => setIsModalOpen(true)}
             />
           </HTMLFlipBook>
