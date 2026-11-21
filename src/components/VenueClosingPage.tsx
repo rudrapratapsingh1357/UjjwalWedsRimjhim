@@ -16,15 +16,6 @@ export const VenueClosingPage = React.forwardRef<HTMLDivElement, VenueClosingPag
     const { venue } = weddingConfig.event;
     const { contacts, traditional } = weddingConfig;
 
-    const handleSendWishes = () => {
-      const primaryPhone = contacts[0].phone;
-      const text = encodeURIComponent(
-        `*Ujjwal & Rimjhim Wedding — Best Wishes & Blessings*\n\n` +
-        `Warmest congratulations and best wishes to Ujjwal & Rimjhim for a lifetime of love and joy! ✨💐`
-      );
-      window.open(`https://wa.me/91${primaryPhone}?text=${text}`, '_blank');
-    };
-
     return (
       <BookPage ref={ref} pageNumber={pageNumber} isCover={true}>
         <div className="flex flex-col items-center justify-between text-center h-full py-1">
@@ -107,20 +98,16 @@ export const VenueClosingPage = React.forwardRef<HTMLDivElement, VenueClosingPag
             </div>
           </div>
 
-          {/* Send Wishes via WhatsApp Button */}
-          <div className="my-1">
-            <button
-              onClick={handleSendWishes}
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gold/15 border border-gold text-gold-dark hover:bg-gold hover:text-white font-sans text-xs font-semibold tracking-wider uppercase transition-all shadow-xs"
-            >
-              <MessageCircle className="w-3.5 h-3.5" />
-              <span>{t('Send Blessings via WhatsApp', 'व्हाट्सएप पर शुभकामना भेजें')}</span>
-            </button>
-          </div>
-
           {/* Traditional Closing Note */}
-          <div className="max-w-xs text-center text-espresso/80 font-serif italic text-xs leading-relaxed px-2">
-            "{traditional.closingNote}"
+          <div className="max-w-xs text-center px-2 my-2">
+            <p className="text-espresso/90 font-serif italic text-xs sm:text-[13px] leading-relaxed">
+              "{traditional.closingNote}"
+            </p>
+            {traditional.closingAttribution && (
+              <p className="font-display text-gold-dark text-[11px] sm:text-xs font-semibold tracking-wider mt-1.5 uppercase">
+                — {traditional.closingAttribution}
+              </p>
+            )}
           </div>
 
           <FloralDivider variant="minimal" className="my-0 scale-75" />

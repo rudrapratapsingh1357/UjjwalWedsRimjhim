@@ -103,14 +103,6 @@ export const InvitationEnvelope: React.FC<InvitationEnvelopeProps> = ({ onOpen }
           Ujjwal <span className="font-script text-2xl sm:text-4xl text-gold mx-1.5">&amp;</span> Rimjhim
         </h1>
 
-        {/* Hindi invitation subtitle */}
-        <p
-          className="text-base sm:text-lg text-espresso/80 mb-1 tracking-wide"
-          style={{ fontFamily: "'Noto Serif Devanagari', serif" }}
-        >
-          आप सादर आमंत्रित हैं
-        </p>
-
         <p className="font-serif italic text-sm text-espresso/60 tracking-wider mb-8">
           An Invitation to Celebrate Love
         </p>

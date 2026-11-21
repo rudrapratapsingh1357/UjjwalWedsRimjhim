@@ -5,9 +5,7 @@ import { useLanguage } from '../hooks/useLanguage';
 import { CoverPage } from './CoverPage';
 import { AnnouncementPage } from './AnnouncementPage';
 import { SchedulePage } from './SchedulePage';
-import { SiblingsPage } from './SiblingsPage';
 import { FamilyPage } from './FamilyPage';
-import { BlessingsPage } from './BlessingsPage';
 import { VenueClosingPage } from './VenueClosingPage';
 import { SaveTheDateModal } from './SaveTheDateModal';
 import { BackgroundMusic } from './BackgroundMusic';
@@ -20,7 +18,7 @@ export const WeddingBook: React.FC<WeddingBookProps> = () => {
   const flipBookRef = useRef<any>(null);
   const { isHindi, toggleLanguage, t } = useLanguage();
   const [currentPage, setCurrentPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(7);
+  const [totalPages, setTotalPages] = useState(5);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -88,15 +86,13 @@ export const WeddingBook: React.FC<WeddingBookProps> = () => {
     }
   };
 
-  // 7-chapter quick jump pills
+  // 5-chapter quick jump pills
   const navChapters = [
     { page: 0, titleEn: 'Cover', titleHi: 'मुखपृष्ठ' },
     { page: 1, titleEn: 'Invite', titleHi: 'निमंत्रण' },
     { page: 2, titleEn: 'Events', titleHi: 'कार्यक्रम' },
-    { page: 3, titleEn: 'Siblings', titleHi: 'भाई-बहन' },
-    { page: 4, titleEn: 'Family', titleHi: 'परिवार' },
-    { page: 5, titleEn: 'Blessings', titleHi: 'आशीर्वाद' },
-    { page: 6, titleEn: 'Venue', titleHi: 'स्थल' },
+    { page: 3, titleEn: 'Family', titleHi: 'परिवार' },
+    { page: 4, titleEn: 'Venue', titleHi: 'स्थल' },
   ];
 
   return (
@@ -213,24 +209,18 @@ export const WeddingBook: React.FC<WeddingBookProps> = () => {
               onTurnPage={goToNextPage}
             />
 
-            {/* Page 2: Wedding Invitation / Parents / Grandparents */}
+            {/* Page 2: Wedding Announcement */}
             <AnnouncementPage pageNumber={2} />
 
             {/* Page 3: Wedding Celebrations */}
             <SchedulePage pageNumber={3} />
 
-            {/* Page 4: Brothers & Sisters */}
-            <SiblingsPage pageNumber={4} />
+            {/* Page 4: Our Family & Siblings */}
+            <FamilyPage pageNumber={4} />
 
-            {/* Page 5: Our Family (Elders) */}
-            <FamilyPage pageNumber={5} />
-
-            {/* Page 6: Blessings & Family (Darshanabhilashi, Vinīt, Children) */}
-            <BlessingsPage pageNumber={6} />
-
-            {/* Page 7: Venue & Closing */}
+            {/* Page 5: Venue & Contact */}
             <VenueClosingPage
-              pageNumber={7}
+              pageNumber={5}
               onSaveCalendar={() => setIsModalOpen(true)}
             />
           </HTMLFlipBook>

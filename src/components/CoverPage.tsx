@@ -32,19 +32,8 @@ export const CoverPage = React.forwardRef<HTMLDivElement, CoverPageProps>(
         <div className="absolute inset-2 sm:inset-3 border border-gold/40 rounded-xl pointer-events-none z-30" />
         <div className="absolute inset-3.5 sm:inset-4.5 border border-gold/20 rounded-lg pointer-events-none z-30" />
 
-        {/* ════════════════════════════════════════════════════════
-            1. TOP: ॥ श्री गणेशाय नमः ॥
-            - Placed completely above the photo in its own section
-            - Zero overlap with the couple or photograph
-            ════════════════════════════════════════════════════════ */}
-        <header className="relative z-20 pt-4 pb-1 text-center pointer-events-none">
-          <p
-            className="font-serif text-xs sm:text-sm text-gold-dark font-semibold tracking-widest"
-            style={{ fontFamily: "'Noto Serif Devanagari', 'Cormorant Garamond', serif" }}
-          >
-            ॥ श्री गणेशाय नमः ॥
-          </p>
-        </header>
+        {/* Top spacer (replaces removed Ganesh mantra) */}
+        <div className="pt-3" />
 
         {/* ════════════════════════════════════════════════════════
             2. MIDDLE: ORIGINAL COUPLE PHOTOGRAPH

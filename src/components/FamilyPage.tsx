@@ -7,67 +7,85 @@ import { FloralDivider } from './FloralDecoration';
 export const FamilyPage = React.forwardRef<HTMLDivElement, { pageNumber: number }>(
   ({ pageNumber }, ref) => {
     const { isHindi, t } = useLanguage();
-    const { elderCouples } = weddingConfig.family;
+    const { elderCouples, brothers, sisters } = weddingConfig.family;
 
     return (
       <BookPage ref={ref} pageNumber={pageNumber}>
-        <div className="flex flex-col items-center justify-between text-center h-full py-2">
+        <div className="flex flex-col items-center justify-between text-center h-full py-1">
           {/* Header */}
-          <div className="pt-2">
-            <p className="font-sans text-[10px] uppercase tracking-luxury text-gold font-semibold mb-1">
-              {t('With Reverence & Blessings', 'सस्नेह वंदना')}
-            </p>
-            <h2 className="font-display text-2xl sm:text-3xl text-espresso font-normal tracking-wide">
-              {t('Our Family', 'पूज्य स्वजन')}
+          <div className="pt-1">
+            <h2 className="font-display text-xl sm:text-2xl text-espresso font-normal tracking-wide">
+              {t('Our Family & Siblings', 'पूज्य स्वजन एवं स्नेही')}
             </h2>
-            <div className="w-14 h-px bg-gold/50 mx-auto mt-1.5 mb-3" />
+            <div className="w-12 h-px bg-gold/50 mx-auto mt-1 mb-2" />
           </div>
 
-          {/* Elders Section */}
-          <div className="w-full max-w-sm my-auto py-3 px-4 rounded-2xl bg-white/80 border border-gold/35 shadow-card">
-            <div className="space-y-3.5">
-              {elderCouples.map((couple, idx) => {
-                const wifeName = isHindi ? couple.wife.nameHi : couple.wife.name;
-                const hasWifeName = wifeName && wifeName.trim().length > 0;
-
-                return (
-                  <div key={idx} className="flex flex-col items-center">
-                    {/* Husband line */}
-                    <div className="w-full flex items-baseline justify-between px-3 text-sm">
-                      <span className="font-sans text-[11px] text-gold-dark font-semibold uppercase tracking-wider">
+          <div className="w-full max-w-sm flex-1 flex flex-col justify-between py-1">
+            {/* Section A: OUR FAMILY (पूज्य स्वजन) */}
+            <div className="py-2 px-3 rounded-xl bg-white/80 border border-gold/35 shadow-xs">
+              <span className="font-sans text-[10px] uppercase tracking-luxury text-gold-dark font-semibold block mb-1.5">
+                {t('Our Family', 'पूज्य स्वजन')}
+              </span>
+              <div className="space-y-1.5">
+                {elderCouples.map((couple, idx) => (
+                  <div key={idx} className="flex flex-col text-xs">
+                    <div className="flex items-baseline justify-between px-1">
+                      <span className="font-sans text-[10px] text-gold-dark font-medium uppercase">
                         {isHindi ? couple.husband.relationHi : couple.husband.relation}
                       </span>
-                      <span className="font-serif text-base sm:text-lg font-medium text-espresso">
+                      <span className="font-serif text-xs sm:text-sm font-semibold text-espresso">
                         {isHindi ? couple.husband.nameHi : couple.husband.name}
                       </span>
                     </div>
-
-                    {/* Wife line (Taiji name kept blank per groom's requirement) */}
-                    <div className="w-full flex items-baseline justify-between px-3 text-sm mt-0.5">
-                      <span className="font-sans text-[11px] text-gold-dark font-semibold uppercase tracking-wider">
+                    <div className="flex items-baseline justify-between px-1 mt-0.5">
+                      <span className="font-sans text-[10px] text-gold-dark font-medium uppercase">
                         {isHindi ? couple.wife.relationHi : couple.wife.relation}
                       </span>
-                      {hasWifeName ? (
-                        <span className="font-serif text-base sm:text-lg font-medium text-espresso">
-                          {wifeName}
-                        </span>
-                      ) : (
-                        <span className="font-serif text-sm italic text-espresso/40">
-                          {/* Blank per instruction */}
-                        </span>
-                      )}
+                      <span className="font-serif text-xs sm:text-sm font-semibold text-espresso">
+                        {isHindi ? couple.wife.nameHi : couple.wife.name}
+                      </span>
                     </div>
-
                     {idx < elderCouples.length - 1 && (
-                      <div className="w-32 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent my-2" />
+                      <div className="w-24 h-px bg-gold/20 mx-auto my-1" />
                     )}
                   </div>
-                );
-              })}
+                ))}
+              </div>
+            </div>
+
+            {/* Subtle Divider */}
+            <div className="w-20 h-px bg-gold/40 mx-auto my-1.5" />
+
+            {/* Section B: BROTHERS (भ्राता) */}
+            <div className="py-2 px-3 rounded-xl bg-beige/30 border border-gold/30">
+              <span className="font-sans text-[10px] uppercase tracking-luxury text-gold-dark font-semibold block mb-1.5">
+                {t('Brothers', 'भ्राता')}
+              </span>
+              <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs font-serif text-espresso">
+                {brothers.map((name, i) => (
+                  <div key={i} className="py-0.5 border-b border-gold/15 text-center">
+                    <p className="leading-tight">{name}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Section C: SISTERS (भगिनी) */}
+            <div className="py-2 px-3 rounded-xl bg-beige/30 border border-gold/30 mt-1.5">
+              <span className="font-sans text-[10px] uppercase tracking-luxury text-gold-dark font-semibold block mb-1.5">
+                {t('Sisters', 'भगिनी')}
+              </span>
+              <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs font-serif text-espresso">
+                {sisters.map((name, i) => (
+                  <div key={i} className="py-0.5 border-b border-gold/15 text-center">
+                    <p className="leading-tight">{name}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          <FloralDivider variant="minimal" className="my-1 scale-75" />
+          <FloralDivider variant="minimal" className="my-0 scale-70" />
         </div>
       </BookPage>
     );

@@ -97,6 +97,7 @@ export interface WeddingConfig {
     mangalikKaryakram: string;
     dampatySutraBandhan: string;
     closingNote: string;
+    closingAttribution?: string;
   };
   contacts: {
     name: string;
@@ -235,37 +236,29 @@ export const weddingConfig: WeddingConfig = {
   },
   family: {
     brothers: [
-      "Rudra",
-      "Pushpander",
-      "Naveen",
-      "Mayank",
-      "Krishna",
-      "Keshav",
+      "Rudra Pratap Singh",
+      "Pushpander Saini",
+      "Naveen Saini",
+      "Mayank Saini",
+      "Shivam Saini",
+      "Sourabh Kumar Saini",
     ],
     sisters: [
-      "Ishika",
-      "Samiksha",
-      "Goldi",
-      "Veera",
-      "Rubi",
-      "Pushpa",
+      "Ishika Saini",
+      "Pushpa Saini",
+      "Goldy",
+      "Samiksha Saini",
+      "Veeraa",
+      "Ruby",
     ],
     elderCouples: [
       {
-        husband: { relation: "Tauji", relationHi: "ताऊजी", name: "Shokendar", nameHi: "शौकेन्द्र" },
-        wife: { relation: "Taiji", relationHi: "ताईजी", name: "", nameHi: "" }, // Kept blank per groom's requirement
+        husband: { relation: "Tauji", relationHi: "ताऊजी", name: "Dr. Shokendar Saini", nameHi: "डॉ॰ शौकेन्द्र सैनी" },
+        wife: { relation: "Taiji", relationHi: "ताईजी", name: "Mrs. Laxmi Saini", nameHi: "श्रीमती लक्ष्मी सैनी" },
       },
       {
-        husband: { relation: "Chachaji", relationHi: "चाचाजी", name: "Arun", nameHi: "अरुण" },
-        wife: { relation: "Chachiji", relationHi: "चाचीजी", name: "Aarti", nameHi: "आरती" },
-      },
-      {
-        husband: { relation: "Fufaji", relationHi: "फूफाजी", name: "Dharampal", nameHi: "धर्मपाल" },
-        wife: { relation: "Buaji", relationHi: "बुआजी", name: "Brijesh", nameHi: "ब्रिजेश" },
-      },
-      {
-        husband: { relation: "Fufaji", relationHi: "फूफाजी", name: "Khar Singh", nameHi: "खड़ सिंह" },
-        wife: { relation: "Buaji", relationHi: "बुआजी", name: "Sangeeta", nameHi: "संगीता" },
+        husband: { relation: "Chacha Ji", relationHi: "चाचा जी", name: "Mr. Arun Kumar Saini", nameHi: "श्री अरुण कुमार सैनी" },
+        wife: { relation: "Chachi Ji", relationHi: "चाची जी", name: "Mrs. Aarti Saini", nameHi: "श्रीमती आरती सैनी" },
       },
     ],
   },
@@ -276,11 +269,12 @@ export const weddingConfig: WeddingConfig = {
     mangalikKaryakram: "Wedding Celebrations",
     dampatySutraBandhan: "दाम्पत्य-सूत्र-बंधन",
     jayShriRam: "ॐ जय श्री राम ॐ",
-    closingNote: "कृपया निमंत्रण पत्र को ही प्रत्यक्ष मिलन मानकर हृदय से स्वीकार करें।",
+    closingNote: "Na koi kaam, na koi bahana hoga, humare mama ki shaadi mein, aap sabko jarur-jarur aana hoga.",
+    closingAttribution: "Najuk, Kunj, Madhav",
   },
   contacts: [
-    { name: "Nardev Singh", nameHi: "नरदेव सिंह", phone: "9012359678" },
-    { name: "Dr. Shokendar Singh", nameHi: "डॉ॰ शौकेन्द्र सिंह", phone: "9650155224" },
+    { name: "Nardev Singh", nameHi: "नरदेव सिंह", phone: "9650155224" },
+    { name: "Dr. Shokendar Singh", nameHi: "डॉ॰ शौकेन्द्र सिंह", phone: "9012359678" },
     { name: "Arun Kumar", nameHi: "अरुण कुमार", phone: "8377884494" },
   ],
   darshanabhilashi: [
