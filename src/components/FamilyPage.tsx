@@ -15,16 +15,16 @@ export const FamilyPage = React.forwardRef<HTMLDivElement, { pageNumber: number 
           {/* Header */}
           <div className="pt-1">
             <h2 className="font-display text-xl sm:text-2xl text-espresso font-normal tracking-wide">
-              {t('Our Family & Siblings', 'पूज्य स्वजन एवं स्नेही')}
+              {t('Our Family', 'पूज्य स्वजन')}
             </h2>
             <div className="w-12 h-px bg-gold/50 mx-auto mt-1 mb-2" />
           </div>
 
           <div className="w-full max-w-sm flex-1 flex flex-col justify-between py-1">
-            {/* Section A: OUR FAMILY (पूज्य स्वजन) */}
+            {/* Section A: ELDERS (पूज्य स्वजन) */}
             <div className="py-2 px-3 rounded-xl bg-white/80 border border-gold/35 shadow-xs">
               <span className="font-sans text-[10px] uppercase tracking-luxury text-gold-dark font-semibold block mb-1.5">
-                {t('Our Family', 'पूज्य स्वजन')}
+                {t('Elders', 'पूज्य स्वजन')}
               </span>
               <div className="space-y-1.5">
                 {elderCouples.map((couple, idx) => (

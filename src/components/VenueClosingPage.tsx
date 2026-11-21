@@ -100,11 +100,11 @@ export const VenueClosingPage = React.forwardRef<HTMLDivElement, VenueClosingPag
 
           {/* Traditional Closing Note */}
           <div className="max-w-xs text-center px-2 my-2">
-            <p className="text-espresso/90 font-serif italic text-xs sm:text-[13px] leading-relaxed">
+            <p className="text-espresso font-serif italic font-medium text-xs sm:text-[13px] leading-relaxed">
               "{traditional.closingNote}"
             </p>
             {traditional.closingAttribution && (
-              <p className="font-display text-gold-dark text-[11px] sm:text-xs font-semibold tracking-wider mt-1.5 uppercase">
+              <p className="font-display text-gold-dark text-[11px] sm:text-xs font-semibold tracking-wider mt-1.5">
                 — {traditional.closingAttribution}
               </p>
             )}
